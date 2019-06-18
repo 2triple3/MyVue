@@ -1,0 +1,273 @@
+/* 全局设置 */
+*{margin:0;padding:0}
+*:focus{outline:none}
+html,body{width:100%;height:100%;background:#fff;}
+body,td,th {font-family:"宋体", Arial, Tahoma, Verdana, sans-serif; font-size: 12px; line-height: 20px;}
+img{CURSOR: pointer;border: 0px;}
+.upper{text-transform:uppercase}
+.lower{text-transform:lowercase}
+
+/* CAPTION QQ 插件中有用到 */
+.CAPTION{FONT-WEIGHT: bold;COLOR: #446699;HEIGHT: 20px;TEXT-ALIGN: center;font-size18: }
+
+/* LISTTR 条款有用到 */
+.LISTTR{BACKGROUND: #ffffff;HEIGHT: 16px}
+
+/* 一种按钮样式 很多地方用到 */
+.UTBUTTON{border:1px solid #3A5CB4;cursor:pointer;color:#FFF;height:20px;background:url(./../images/button_bg.gif) repeat-x;font:12px "宋体";}
+
+/* 字段基本样式 */
+.CHAR,
+.TEXT,
+.DATE,
+.TIME,
+.DATETIME,
+.KEY{FONT-SIZE: 8pt;font-family:"Courier New", Arial, Tahoma, Verdana, sans-serif, "宋体";TEXT-ALIGN: left;line-height:14px;}
+.AMT,
+.INT,
+.FLOAT,
+.RATE{FONT-SIZE: 8pt;font-family:"Courier New", Arial, Tahoma, Verdana, sans-serif, "宋体";TEXT-ALIGN: right;line-height:14px;padding-right:2px\9; /* IE8 */*padding-right:2px;  /* IE7 */_padding-right:2px;  /* IE6 */}
+
+/* 字段MOP样式 */
+.M{BACKGROUND-COLOR: #FEDFE0;}
+.O{BACKGROUND-COLOR: #ffffff;}
+.P{BACKGROUND-COLOR: #cad1e2;}
+
+/* 批注及修改样式 EE代表加了批注 MM代表有修改 EEMM代表同时有批注修改 EEMM是为了兼容IE6而存在的 */
+.EE{color:red;TEXT-DECORATION: line-through;}
+.MM{color:blue;TEXT-DECORATION: underline;}
+.EEMM{color:red;}
+
+a:link {color:#000000; text-decoration: none;}
+a:visited {color:#000000; text-decoration: none;}
+a:hover {color:#003366; text-decoration: underline;}
+a:active {text-decoration: none;}
+
+/* 交易中菜单栏两种样式 */
+.dis{DISPLAY: none}
+.shows{DISPLAY: inline}
+
+/* 交易表格样式 */
+table{width:100%; border-left:1px solid #EEEEEE; border-top:1px solid #EEEEEE; border-collapse:collapse;}
+table table{border:none;} 
+tr{MARGIN-TOP: 2px;FONT-SIZE: 10pt;MARGIN-BOTTOM: 2px;PADDING-BOTTOM: 2px;PADDING-TOP: 2px;FONT-FAMILY: arial}
+td{border-right:1px solid #EEEEEE;border-bottom:1px solid #EEEEEE;}
+th{border-right:1px solid #EEEEEE;border-bottom:1px solid #EEEEEE;}
+
+
+/* 普通表格 */
+table .grid_one{}
+table .grid_two{background:#FFF4E1;}
+
+/* 带样式的表格 */
+.styleTable tr:hover{background-color: gold;-webkit-transition:background-color 0.5s linear;}
+.styleTable th{background:#4F81BD;color:#fff;line-height:30px;font-weight:normal;}
+.styleTable td{padding-left:8px;line-height:25px;}
+.styleTable .grid_one{background:#E9EDF4;-webkit-transition:background-color 0.5s linear;}
+.styleTable .grid_two{background:#D0D8E8;-webkit-transition:background-color 0.5s linear;}
+.styleTable .center{padding-left:0px;text-align:center;}
+
+/* 首页样式 dotaskMain.jsp */
+.f-user{float:right;font-size:12px;line-height:20px;width:49%;text-align:center;}
+.f-user a{color:#000;}
+.f-user a:hover{color:orange;}
+.f-user p{line-height:30px; }
+
+/* thead标签在jGrid表格title部分有用到 */
+thead.arrow {font-family: webdings;color: black; padding: 0;font-size: 10px;height: 11px;width: 10px;overflow: hidden;margin-bottom: 2;margin-top: -3;padding: 0;padding-top: 0;padding-bottom: 2;}
+
+/* systembutton样式用于lookup 具体用途请说明 */
+.systembutton {width: 80px;float: left;text-align: center;margin: 4px;padding: 4px;background-color: #ffffff;border:  2px solid #888;font:12px "宋体";height:18px;}
+
+
+/* 为了和LOOKUP加黄色边框后的尺寸保持一致 */
+input[type=text],textarea,select{border:1px solid #ABADB3;}
+
+/* 禁止chrome可以手动改变textarea尺寸功能 */
+textarea{resize:none;overflow-y:scroll}
+
+h1 {font-size: 12px;color: #FFFFFF;}
+td {color: #333333;text-align:left}
+
+.CHAR.select {background-color: #D9DFF7;color: #000000;}
+
+/* 各队列设置尺寸 一定要设置 */
+#main_Div {width:100%;height:100%}
+.grids_DIV{width:100%;height:100%}
+
+/* 导航栏 */
+ul.TabBarLevel1{list-style:none;height:27px;background-image:url(./../images/slice_bk.gif.png);padding:1px 1px 0 5px;border:1px solid #FFF;border-width:0 1px 1px 1px;color: #6699CC;}
+ul.TabBarLevel1 li{position:relative;float:left;padding:0;height:22px;background:url(./../images/slice_left_bk.gif.png) no-repeat left top;margin-right: 2px;}
+ul.TabBarLevel1 li a{position:relative;cursor:pointer;display:block;line-height:22px;color:#333;white-space: nowrap;background:url(./../images/slice_right_bk.gif.png) no-repeat right top;padding:0 8px;}
+ul.TabBarLevel1 li.Selected{background:url(./../images/selected_left_bk.gif.png) no-repeat left top; height: 23px;font-weight: bold;}
+ul.TabBarLevel1 li.Selected a{background:url(./../images/selected_right_bk.gif.png) no-repeat right top; }
+ul.TabBarLevel1 li a:link, ul.TabBarLevel1 li a:visited{color:#333;}
+ul.TabBarLevel1 li a:hover{color:#F30;text-decoration:none;}
+
+ul.TabBarLevel1 li a.tabs-close{
+	position:absolute;
+	font-size:1px;
+	display:block;
+	padding:0px;
+	width:11px;
+	height:11px;
+	top:3px;
+	right:3px;
+	opacity:0.6;
+	filter:alpha(opacity=60);
+	background:url('./../images/tabs_close.gif') no-repeat;
+}
+
+ul.TabBarLevel1 li a:hover.tabs-close{
+	opacity:1;
+	filter:alpha(opacity=100);
+	cursor:hand;
+	cursor:pointer;
+}
+
+/* 侧边栏菜单  */
+.tabcon{background-color: #FFFFFF;padding: 4px;border-width:0px 0px 1px 1px;border-style:solid;border-color: #d5dff2;}
+.tabconUL {float: left;padding-left: 3px;}
+.dtree {font-size: 12px;color: #666;line-height: 18px;}
+.dtree img {border: 0px;vertical-align: middle;}
+.dtree a {color: #333;text-decoration: none;line-height: 18px;}
+.dtree a.node, .dtree a.nodeSel {padding: 1px 2px 1px 2px;text-decoration: none;}
+.dtree a.node:hover, .dtree a.nodeSel:hover {color: #ff3300;text-decoration: none;}
+.dtree a.nodeSel {}
+.dtree .clip {}
+
+
+/* 未知 */
+.none {display:none;}
+
+/* 交易各子页面框架 */
+.HackBox {*position:relative;_position:relative;padding : 1px;display:none;height: 420px;width: auto;border: 1px solid #EEEEEE;margin-left: 0px;margin-right: 0px;_margin-right: 15px;clear: none;overflow-y: scroll;overflow-x:hidden;}
+.HackBox2 {padding : 1px;display:block;width: auto;margin-left: 5px;margin-right: 5px;clear: none;overflow-y:scroll;overflow-x:hidden;}
+
+/*autoSub部分*/
+.subBoxTop{}
+.subBoxLevel{padding-left:40px;}
+.subButtonTop{}
+.subButtonLevel{padding-left:40px;}
+.autoSubTop{text-align:center;}
+.autoSubLevel{text-align:left;padding-left:40px;}
+
+/*按钮样式*/
+.fr-menubutton,
+.fr-linkbutton{cursor:pointer;zoom:1;display:inline-block;font-size:12px;padding-right:18px;height:24px;line-height:20px;background:url(./../img/button_a_bg.gif) no-repeat right top;}
+.fr-menu-hover,
+.fr-link-hover{background:url(./../img/button_a_bg.gif) no-repeat right bottom;}
+.fr-link-left{display:inline-block;padding:4px 0 4px 18px;height:16px;line-height:16px;background:url(./../img/button_span_bg.gif) no-repeat left top;}
+.fr-link-text{display:inline-block;height:16px;line-height:16px;}
+span.fr-link-left-hover,
+span.fr-menu-left-hover{background:url(./../img/button_span_bg.gif) no-repeat left bottom;}
+.fr-menu-left{display:inline-block;padding:4px 0 4px 18px;_padding:6px 0 2px 18px;height:16px;line-height:16px;background:url(./../img/button_span_bg.gif) no-repeat left top;}
+.fr-menu-text{display:inline-block;height:16px;line-height:16px;}
+.fr-menu-downarrow{display:inline-block;height:12px;width:12px;line-height:16px;background:url(./../img/menu_downarrow.png) no-repeat 4px 5px;}
+.fr-menu-list{position:relative;display:inline-block;*display:inline;zoom:1;margin-left:10px;}
+.fr-menu-subs{width:100px;display:none;position:absolute;left:0;padding:2px;background:#F0F0F0 url(./../img/menu.gif) repeat-y;border:1px solid #CCC;overflow:hidden;font-size:12px;}
+.fr-menu-sub{display:block;height:20px;line-height:20px;margin-top:3px;border:1px solid transparent;}
+.fr-menu-sub-hover{display:block;height:20px;line-height:20px;margin-top:3px;border:1px solid #7EABCD;background-color:#FAFAFA;}
+
+/** icons **/
+.fr-icon-none{display:inline-block;padding-left:28px;}
+.fr-icon-cancel{display:inline-block;background:url(./../icons/cancel.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-back{display:inline-block;background:url(./../icons/back.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-cut{display:inline-block;background:url(./../icons/cut.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-edit-add{display:inline-block;background:url(./../icons/edit_add.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-edit-remove{display:inline-block;background:url(./../icons/edit_remove.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-help{display:inline-block;background:url(./../icons/help.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-no{display:inline-block;background:url(./../icons/no.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-ok{display:inline-block;background:url(./../icons/ok.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-pencil{display:inline-block;background:url(./../icons/pencil.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-print{display:inline-block;background:url(./../icons/print.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-redo{display:inline-block;background:url(./../icons/redo.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-reload{display:inline-block;background:url(./../icons/reload.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-save{display:inline-block;background:url(./../icons/save.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-search{display:inline-block;background:url(./../icons/search.png) no-repeat 2px 50%;padding-left:28px;}
+.fr-icon-undo{display:inline-block;background:url(./../icons/undo.png) no-repeat 2px 50%;padding-left:28px;}
+
+/** processBar **/
+#processBgBody{position:absolute;text-align:center;left:0;top:0;width:100%;height:100%;background:black;opacity:0.5;filter:alpha(opacity=50);display:none;z-index:999;}
+#processBody{margin:0 auto;height:100px;text-align:center;width:400px;}
+#processMessageBody{height:40px;line-height:40px;font-size:18px;font-weight:bold;color:white;}
+#processBgNormal{position:absolute;text-align:center;left:0;top:0;width:100%;height:100%;display:none;z-index:999;}
+#processNormal{margin:0 auto;padding-top:30px;height:80px;text-align:center;width:400px;background:#ffffff;opacity:0.9;filter:alpha(opacity=90);}
+#processMessageNormal{margin-top:20px;display:block;font-size:18px;font-weight:bold;color:#0F243E;}
+
+/** JT_holidays **/
+#allCalendars{margin-top:10px;padding-left:20px;}
+.calendarContainer{float:left;background:url(./../images/holidays-bg.png) no-repeat 2px 2px;margin-left:10px;}
+.utanCalendar{font-size:12px;line-height:24px;width:168px;height:192px;margin:5px;}
+.utanCalendarTitle{height:24px;text-align:center;}
+.utanCalendarWeekday span{display:inline-block;width:24px;height:24px;float:left;text-align:center;}
+.singleBlank,.singleDate{display:inline-block;width:24px;height:24px;float:left;text-align:center;cursor:pointer;}
+.singleDate:hover{width:22px;height:22px;line-height:22px;border:1px solid blue;background:#C4E8FD;}
+.holiday{color:red;font-weight:bold;}
+
+
+/** 业务按钮部分 **/
+.toolbar{height:27px;background:#FFF url(./../images/toolbar_bg.png) repeat-x;position:relative;padding:0 5px;padding-bottom:5px;line-height:18px;}
+.toolbar .toolbar_ll{position:absolute;height:27px;border-left:1px solid #A4BED4;left:0;top:0;}
+.toolbar .toolbar_rr{position:absolute;height:27px;border-right:1px solid #A4BED4;right:0;top:0;}
+.toolbar .toolbar_l{position:absolute;height:25px;border-left:1px solid white;left:1px;top:1px;}
+.toolbar .toolbar_r{position:absolute;height:25px;border-right:1px solid white;right:1px;top:1px;}
+.toolbar .toolbar_sep{position:relative;float:left;height:25px;width:2px;top:1px;background:url(./../images/toolbar_sep_bg.png) no-repeat;}
+.toolbar .linkbutton{border:none;background:none;position:relative;float:left;margin-top:2px;padding:3px 8px 2px 8px;margin-right:1px;cursor:pointer;}
+.toolbar .linkbutton img{display:inline-block;width:18px;height:18px;float:left;}
+.toolbar .linkbutton span{display:inline-block;float:left;height:20px;line-height:20px;}
+.toolbar .linkbutton:hover{border:1px solid #FFB552;padding:2px 7px 1px 7px;background:url(./../images/toolbar_bg_over.png) repeat-x;}
+.toolbar .linkbutton:disabled{color:#ccc;border-color:transparent;background:none;}
+.toolbar .menu-list{position:relative;float:left;margin-top:2px;padding:3px 8px 2px 8px;margin-right:1px;cursor:pointer;}
+.toolbar .menu-list:hover{border:1px solid #FFB552;padding:2px 7px 1px 7px;padding-bottom:1px;background:url(./../images/toolbar_bg_over.png) repeat-x;}
+.toolbar .menu-list .menubutton{display:inline-block;zoom:1;*display:inline;height:20px;line-height:20px;border:none;background:none;}
+.toolbar .menubutton img{display:inline-block;width:18px;height:18px;float:left;}
+.toolbar .menu-list .menu-subs{position:absolute;width:100px;background:#EAF2FB;left:0;*top:23px;display:none;cursor:default;border:1px solid #A4BED4;}
+.toolbar .menu-list:hover .menu-subs{display:block;}
+.toolbar .menu-list .menu-subs .menu-sub{border:1px solid #EAF2FB;border-bottom:1px solid gray;padding:2px 2px 2px 4px;height:20px;line-height:20px;}
+.toolbar .menu-list .menu-subs .menu-sub:hover{border:1px solid #FFB552;background:url(./../images/toolbar_bg_over.png) repeat-x;}
+.toolbar .arwimg{display:inline-block;height:10px;width:10px;zoom:1;*display:inline;background:url(./../images/toolbar_btnarrow.png) no-repeat 50% 50%;}
+
+/* 业务路径(交易左上角) */
+#taskDesc{background:#FFF;}
+
+/* 结果页 */
+#viewList{line-heigth:25px;}
+#viewList h1{font-size:20px;color:#f30;font-weight:bold;height:40px;line-height:40px;text-align:center;background:#f9f9f9;}
+#viewList h2{text-align:center;font-size:14px;line-height:30px;background:#E9E7D8;font-weight:normal;}
+.doViewResultDiv{padding-top:10px;padding-bottom:10px;background:#EEECE1;}
+.doViewResultDiv p{font-size:12px;line-height:25px;padding-left:20px;}
+.importantINFO{color:#C0504D;}
+.doViewButtons{margin-top:20px;text-align:center;}
+.doViewButtons .buttonWr{}
+.doViewButtons .button{display:inline-block;_display:inline;width:100px;height:28px;line-height:28px;background:url(./../images/btn.gif) no-repeat 0 0;cursor:pointer;text-align:center;font-size:16px;color:#fff;}
+.doViewButtons .button:hover{color:orange;}
+.doViewResultDiv .doSome,.doViewButtons .doSome{margin-left:10px;color:blue;text-decoration:underline;}
+.doViewResultDiv .doSome:hover,.doViewButtons .doSome:hover{color:#F79646;cursor:pointer;}
+
+.outPutDiv .doSome{margin-left:10px;color:blue;text-decoration:underline;}
+.outPutDiv .doSome:hover{color:#F79646;cursor:pointer;}
+.sysMessageDiv{margin-top:10px;}
+.sysMessageDiv p{text-indent:2em;}
+.sysMessageDiv .sysMessage{color:#C0504D;font-size:13px;}
+.hidden{display:none;}
+select.M[disabled], select.P[disabled]{font-weight:bold;background:#fff;}
+
+/* 主页信息样式 */
+.DOTASKMAIN_INFO{padding: 5px;font-size: 12px; text-indent: 2em; color: gray; text-align: left;}
+.DOTASKMAIN_INFO p.detail{text-indent: 0;}
+.DOTASKMAIN_INFO DIV.NORMAL{color:black;}
+.DOTASKMAIN_INFO DIV.ATTENTION{color:blue;}
+.DOTASKMAIN_INFO DIV.URGENT{color:red;}
+
+.jqEditAbleM{BACKGROUND-COLOR: #CBF3FB;}
+
+/* 为了解决ie8下jqGrid表格中select处于编辑状态下时候选项躲猫猫的问题:鼠标一往下移动选择的时候选项就没了  */
+.ui-widget select{
+	font-family:"微软雅黑";
+}
+select.CHAR{
+	font-family:"Courier New";
+}
+/*个人外汇业务监测系统报错页面样式*/
+#FEMWarningQueue_Div {width:100%;height:100%}
