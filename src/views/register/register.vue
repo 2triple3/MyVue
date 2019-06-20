@@ -4,10 +4,10 @@
     
     <div class="login-title">XXX平台</div>
     <div class="login-box flex-col-box center">
+      <div id="registerTips" style="color:red;float:left">{{registerTips}}</div>
       <el-form :model="formData" ref="registerForm" :rules="rules" label-position="left" label-width="80px" >
-
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="formData.username"></el-input>
+          <el-input v-model="formData.username" @blur="checkUsernameExist()" @focus="removeRegisterTips()"></el-input>
         </el-form-item>
 
         <el-form-item label="密码" prop="password">
@@ -38,11 +38,11 @@
     data: function () {
       //username验证
       const checkUsername = function (rule, value, callback) {
-        var reg = /^admin$/;
+        var reg = /^\w{3,10}$/;
         if(!value){
-          return callback(new Error('账号不为空'));
+          return callback(new Error('用户名不为空'));
         } else if(!reg.test(value)) {
-          return callback(new Error('账户不正确'));
+          return callback(new Error('用户名长度是3到10位的字母或数字'));
         } else {
           callback();
         }
@@ -53,7 +53,7 @@
         if(!value){
           return callback(new Error('密码不为空'));
         }else if(!reg.test(value)) {
-          return callback(new Error('密码长度是4到10位的字母或数字'));
+          return callback(new Error('密码长度是6到10位的字母或数字'));
         }else {
           callback();
         }
@@ -70,6 +70,7 @@
       };
 
       return {
+        registerTips:'',
         formData: {
           username: '',
           password: '',
@@ -85,7 +86,7 @@
           confirm: [
             { validator: checkConfirm.bind(this), trigger: 'blur' }
           ]
-        },
+        }
       }
     },
     computed: {
@@ -94,25 +95,62 @@
         }
     },
     methods: {
+      removeRegisterTips(){
+        this.registerTips="";
+      },
+      resetForm(formName){
+        this.$refs[formName].resetFields();
+      },
       handleChange(val) {
         console.log(val);
+      },
+      checkUsernameExist(){
+            const username = this.formData.username;
+            this.axios.get(
+              'http://127.0.0.1:8081/api/checkUsernameExist/' + username,
+              {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+            ).then(
+              (response) => {
+                      if(response.data.status=="1"){
+                          this.registerTips="用户名已存在!";
+                      }else{
+                          this.registerTips="";
+                      }                       
+              }
+            ).catch(function (response) {
+                    //this.loginTips="与服务器连接失败!";
+                    alert("与服务器连接失败!");
+                    console.log(response)
+            });
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$message({
-              message: '注册成功',
-              type: 'success'
+            var obj = JSON.stringify(this.formData);
+            this.axios.post(
+              'http://127.0.0.1:8081/api/register',
+              obj,
+              {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+            ).then(
+              (response) => {
+                  if(response.data.status=="1"){
+                      this.$message({
+                        message: '注册成功',
+                        type: 'success'
+                      });
+                  }
+              }
+            ).catch(function (response) {
+                    //console.log(response)
             });
+
           } else {
-            console.log('error submit!!');
+            alert('error submit!!');
             return false;
           }
         });
-      },
-      resetForm(formName){
-        this.$refs[formName].resetFields();
       }
+
     }
   }
 </script>

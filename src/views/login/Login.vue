@@ -6,14 +6,14 @@
 
     <div class="login-title">XXX平台</div>
     <div class="login-box flex-col-box center">
+      <div id="loginTips" style="color:red;float:left;width=80px">{{loginTips}}</div>
       <el-form :model="formData" ref="myForm" :rules="rules" label-position="left" label-width="80px" >
-
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="formData.username"></el-input>
+        <el-form-item label="用户名" prop="username" >
+          <el-input v-model="formData.username" @focus="removeLoginTips()" id="username"></el-input>
         </el-form-item>
 
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="formData.password"></el-input>
+        <el-form-item label="密码" prop="password" >
+          <el-input v-model="formData.password" @focus="removeLoginTips()" id="password"></el-input>
         </el-form-item>
 
         <el-form-item>
@@ -34,6 +34,7 @@
   export default {
     data: function () {
       return {
+        loginTips:'',
         apiUrl: 'http://127.0.0.1:8000/api/login',
         formData: {
           username: '',
@@ -57,6 +58,12 @@
         }
     },
     methods: {
+      resetForm(formName){
+        this.$refs[formName].resetFields();
+      },
+      removeLoginTips(){
+        this.loginTips='';
+      },
       clickEvent(){
         this.$store.commit('add');
       },
@@ -73,32 +80,42 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var obj = JSON.stringify(this.formData);
-            this.axios.post(
-            'http://127.0.0.1:8081/api/login',
-            obj,
-            {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+            this.axios.get(
+              'http://127.0.0.1:8081/api/login',
+              {
+                params: {
+                            username: this.formData.username,
+                            password: this.formData.password,
+                        }
+              },
+              {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
             ).then(
               (response) => {
-                      alert(response.data.status);
-                      this.setUserInfo(obj);
-                      this.$message({
-                        message: '登录成功',
-                        type: 'success'
-                      });
-                      this.$router.replace('/');      
+                      if(response.data.status=="1"){
+                          this.setUserInfo(obj);
+                          this.$message({
+                            message: '登录成功',
+                            type: 'success'
+                          });
+                          this.$router.replace('/');   
+                      }else{
+                          this.loginTips="用户名或密码错误!";
+                          $("#password").val("");
+                      }                         
               }
             ).catch(function (response) {
+                    //this.loginTips="与服务器连接失败!";
+                    alert("与服务器连接失败!");
                     console.log(response)
             });
+
           } else {
-            alert('error submit!!');
+            //this.loginTips='格式有误!';
             return false;
           }
         });
-      },
-      resetForm(formName){
-        this.$refs[formName].resetFields();
       }
+
     }
   }
 </script>

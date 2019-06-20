@@ -49,8 +49,8 @@
 							  :before-close="handleClose">
 							  <span>确认退出么?</span>
 							  <span slot="footer" class="dialog-footer">
-							    <el-button @click="dialogVisible = false">取 消</el-button>
 							    <el-button type="primary" @click="logOut">确 定</el-button>
+							    <el-button @click="dialogVisible = false">取 消</el-button>				    
 							  </span>
 							</el-dialog>
 							<!--elemetUI弹出框end-->
