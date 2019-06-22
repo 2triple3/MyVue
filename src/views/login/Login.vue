@@ -1,32 +1,59 @@
 <template>
-  <div class="wrapper center flex-col-box login-background">  
-    <button v-on:click="clickEvent">add</button>
-    <button v-on:click="clickdecEvent">dec</button>
-    <p style="font-size:20px;color:#ff0000;">vuex测试：{{myNum}}</p>     
+  <div class="wrapper center flex-col-box login-background"> 
 
-    <div class="login-title">XXX平台</div>
-    <div class="login-box flex-col-box center">
-      <div id="loginTips" style="color:red;float:left;width=80px">{{loginTips}}</div>
-      <el-form :model="formData" ref="myForm" :rules="rules" label-position="left" label-width="80px" >
-        <el-form-item label="用户名" prop="username" >
-          <el-input v-model="formData.username" @focus="removeLoginTips()" id="username"></el-input>
-        </el-form-item>
-
-        <el-form-item label="密码" prop="password" >
-          <el-input v-model="formData.password" @focus="removeLoginTips()" id="password"></el-input>
-        </el-form-item>
-
-        <el-form-item>
-          <el-button class="login-btn" type="primary" @click="submitForm('myForm')">登录</el-button>
-        </el-form-item>
-
-      </el-form>
-      <div class="go-register">
-        <span><router-link  to="/forgetPassword" style="float:right">忘记密码</router-link></span>
-        <span style="float:right">&nbsp;&nbsp;</span> 
-        <span><router-link  to="/register" style="float:right">快速注册</router-link></span>
-      </div>
+    <div>
+      <button v-on:click="clickEvent">add</button>
+      <button v-on:click="clickdecEvent">dec</button>
     </div>
+    <div>
+      <p style="font-size:20px;color:#ff0000;">vuex测试：{{myNum}}</p>   
+    </div>
+      
+    <div class="login-title">XXX平台</div>
+    <el-tabs type="border-card" v-model="activeName" stretch>
+      <el-tab-pane label="普通登录" name="first">
+          <div class="login-box flex-col-box center">
+              <div id="loginTips" style="color:red;float:left">{{loginTips}}</div>
+              <el-form :model="formData" ref="myForm" :rules="rules" label-position="left" label-width="80px" >
+                <el-form-item label="用户名" prop="username" >
+                  <el-input  v-model="formData.username" @focus="removeLoginTips()" id="username"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password" >
+                  <el-input v-model="formData.password" @focus="removeLoginTips()" id="password"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button class="login-btn" type="primary" @click="submitForm('myForm')">登录</el-button>
+                </el-form-item>
+              </el-form>
+              <div class="go-register">
+                  <span><router-link  to="/forgetPassword" style="float:right">忘记密码</router-link></span>
+                  <span style="float:right">&nbsp;&nbsp;</span> 
+                  <span><router-link  to="/register" style="float:right">快速注册</router-link></span>
+              </div>
+         </div>
+      </el-tab-pane>
+      <el-tab-pane label="QQ/微信登录" name="second">
+          <div class="login-box flex-col-box center">
+              <el-form :model="formData_qqwx" ref="myForm_qqwx" label-position="left" label-width="80px" >
+                <el-form-item label="QQ/微信" prop="username" >
+                  <el-input v-model="formData_qqwx.username" @focus="removeLoginTips()" id="qqwxusername"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password" >
+                  <el-input v-model="formData_qqwx.password" @focus="removeLoginTips()" id="qqwxpassword"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button class="login-btn" type="primary" @click="submitForm('myForm_qqwx')">登录</el-button>
+                </el-form-item>
+              </el-form>
+              <div class="go-register"> 
+                  <span><router-link  to="/register" style="float:right">快速注册</router-link></span>
+              </div>
+         </div>
+      </el-tab-pane>
+
+    </el-tabs>
+
+
   </div>
 </template>
 
@@ -34,20 +61,25 @@
   export default {
     data: function () {
       return {
+        activeName: 'first',//初始标签页
         loginTips:'',
         apiUrl: 'http://127.0.0.1:8000/api/login',
         formData: {
           username: '',
           password: ''
         },
+        formData_qqwx:{
+          username: '',
+          password: ''
+        },
         rules: {
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+            { min: 3, max: 10, message: '长度是6到10位的字母或数字', trigger: 'blur' }
           ],
           password: [
             { required: true, message: '密码不能为空', trigger: 'blur'},
-            { min: 6, max: 10 ,message: '长度在 6 到 10 个字符', trigger: 'blur'}
+            { min: 6, max: 10 ,message: '长度是6到10位的字母或数字', trigger: 'blur'}
           ]
         },
       }
@@ -58,6 +90,9 @@
         }
     },
     methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
       resetForm(formName){
         this.$refs[formName].resetFields();
       },
@@ -103,9 +138,9 @@
                           $("#password").val("");
                       }                         
               }
-            ).catch(function (response) {
-                    //this.loginTips="与服务器连接失败!";
-                    alert("与服务器连接失败!");
+            ).catch((response)=>{
+                    this.loginTips="登录提交时连接失败!";
+                    //alert("与服务器连接失败!");
                     console.log(response)
             });
 
@@ -125,18 +160,18 @@
     width: 350px;
     height: 290px;
     padding-right: 20px;
-    border: 1px solid #cccccc;
+    //border: 1px solid #cccccc;
     background: #ffffff;
   }
   .login-background{
-    background: #324157;
+    //background: #324157;
   }
   .login-title{
     width: 100%;
-    height: 100px;
-    line-height: 100px;
+    height: 40px;
+    line-height: 30px;
     font-size: 30px;
-    color: #ffffff;
+    //color: #ffffff;
     text-align: center;
   }
   .go-register{

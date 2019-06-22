@@ -1,45 +1,46 @@
 <template>
-  <div class="" >
-
-    <h2>创建模态框（Modal）</h2>
-    <!-- 按钮触发模态框 -->
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">开始演示模态框</button>
-    <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
-                </div>
-                <div class="modal-body">在这里添加一些文本</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-
+  <div>
+      <el-table :data="tableData" height="450" border style="width: 100%">
+        <el-table-column prop="username" label="用户名" width="180"></el-table-column>
+        <el-table-column prop="userid" label="用户id" width="180"></el-table-column>
+        <el-table-column prop="password" label="密码"></el-table-column>
+        <el-table-column prop="operation" label="操作">操作</el-table-column>
+      </el-table>
   </div>
 </template>
 
 <script>
 export default {
     name: 'main-center',
+
 	data() {
 	  return {
-	    activeIndex: '1',
-	    activeIndex2: '1'
+        tableData:[]
 	  };
 	},
+
+    mounted(){
+            this.axios.get(
+              'http://127.0.0.1:8081/api/userlist',
+              {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+            ).then(
+              (response) => {
+                      this.tableData = response.data.userlist;                     
+              }
+            ).catch((response)=>{
+                    this.registerTips="检查用户名是否存在时连接失败!";
+                    //alert("与服务器连接失败!");
+                    console.log(response)
+            });
+    },
+
 	methods: {
-	  handleSelect(key, keyPath) {
-	    console.log(key, keyPath);
-	  }
+
 	}
 }
 </script>
 <style scoped>
+
+
 
 </style>

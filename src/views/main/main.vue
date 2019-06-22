@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container>
+    <el-container style="height: 600px; border: 1px solid #eee">
       <el-header><main-top/></el-header>
       <el-container>
         <el-aside width="200px"><main-left/></el-aside>
@@ -36,32 +36,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.el-header, .el-footer {
-    background-color: #545c64;
+<style scoped>
+
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
     color: #333;
     text-align: center;
-   
+    line-height: 60px;
   }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-
-
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 360px;
-    padding:0px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
 
 </style>
