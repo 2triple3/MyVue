@@ -1,17 +1,19 @@
 <template>
     <div>
+
       <template v-for="list in menuList" >
-        <el-submenu index="1" v-if="list.children && list.children.length>0" :key="list.resourceId" :index="list.resourceName"  >
+        <el-submenu v-if="list.children && list.children.length>0" :key="list.resourceId" :index="list.resourceName"  >
           <template slot="title"  style="padding-left:10px" >
-            <i class="el-icon-menu"></i>
+            <i class=""></i>
             <span slot="title">{{list.resourceName}}</span>
           </template>
           <MenuTree :menuList="list.children"></MenuTree>
         </el-submenu>
-        <el-menu-item v-else :index="list.resourceName"  :key="list.resourceId" style="padding-left: 50px;" @click="changeParentComponent(list.resourceMethod)" >
+        <el-menu-item v-else :index="list.resourceName"  :key="list.resourceId" style="" @click="changeParentComponent(list.resourceMethod)" >
           <span>{{list.resourceName}}</span>
         </el-menu-item>
       </template>
+
     </div>
 </template>
 

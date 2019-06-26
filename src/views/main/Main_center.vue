@@ -9,6 +9,7 @@
 
         <el-main>
             <breadcrumbNav :currentPath="breads"></breadcrumbNav>
+            <br/>
             <component v-bind:is="currentTabComponent" v-on:changeComponent="changeComponent"></component>
         </el-main>
 
@@ -52,8 +53,8 @@ export default {
                    },
                 ]
             },
-            {resourceId:"2",resourceName:'菜单2',resourceMethod:''},
-            {resourceId:"3",resourceName:'菜单3',resourceMethod:''},    
+            {resourceId:"2",resourceName:'菜单项2',resourceMethod:''},
+            {resourceId:"3",resourceName:'菜单项3',resourceMethod:''},    
         ],
         currMenu:[],
         currentTabComponent:"",

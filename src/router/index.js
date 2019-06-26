@@ -4,8 +4,8 @@ import Router from 'vue-router'
 import MyMain from '@/views/main/Main.vue'
 import Login from '@/views/login/Login.vue'
 import Register from '@/views/register/Register.vue'
-import Charts from '@/views/main/charts/Charts.vue'
-import UpLoad from '@/views/main/upload/UpLoad.vue'
+import Charts from '@/views/charts/Charts.vue'
+import UpLoad from '@/views/upload/UpLoad.vue'
 
 Vue.use(Router)
 

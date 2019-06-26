@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import ElUpload from "../../../../node_modules/element-ui/packages/upload/src/index";
+  import ElUpload from "../../../node_modules/element-ui/packages/upload/src/index";
   export default {
     components: {ElUpload},
     data: function () {

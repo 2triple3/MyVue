@@ -7,7 +7,7 @@
 
 <script>
   import * as echarts from 'echarts';
-  import Echarts from '../../../components/Echarts/Echarts.vue';
+  import Echarts from '../../components/Echarts/Echarts.vue';
   export default {
     data: function () {
       return {
