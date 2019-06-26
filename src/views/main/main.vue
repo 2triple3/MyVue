@@ -1,9 +1,8 @@
 <template>
   <div>
-    <el-container style="height: 600px; border: 1px solid #eee">
+    <el-container style="height: 650px; border: 1px solid #eee">
       <el-header><main-top/></el-header>
       <el-container>
-        <el-aside width="200px"><main-left/></el-aside>
         <el-main><main-center/></el-main>
       </el-container>
       <el-footer><main-bottom/></el-footer>
@@ -12,10 +11,10 @@
 </template>
 
 <script>
-import mainTop from './main_top';
-import mainLeft from './main_left';
-import mainCenter from './main_center';
-import mainBottom from './main_bottom';
+import mainTop from './Main_top';
+import mainLeft from './Main_left';
+import mainCenter from './Main_center';
+import mainBottom from './Main_bottom';
 export default {
   name: 'utanmain', 
   components:{
@@ -38,11 +37,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  .el-header, .el-footer {
+  .el-footer {
     background-color: #B3C0D1;
     color: #333;
     text-align: center;
     line-height: 60px;
+
   }
 
 </style>

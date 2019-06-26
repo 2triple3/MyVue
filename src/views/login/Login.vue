@@ -129,6 +129,7 @@
                       if(response.data.status=="1"){
                           this.setUserInfo(obj);
                           this.$message({
+                            offset:90,
                             message: '登录成功',
                             type: 'success'
                           });

@@ -1,35 +1,27 @@
 <template>
-  <div class="wrapper center flex-col-box login-background">
-    <p style="font-size:20px;color:#ff0000;">vuex测试：{{mydata}}</p>   
-    
-    <div class="login-title">XXX平台</div>
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane label="用户注册">
-          <div class="login-box flex-col-box center">
-            <div id="registerTips" style="color:red;float:left">{{registerTips}}</div>
-            <el-form :model="formData" ref="registerForm" :rules="rules" label-position="left" label-width="80px" >
-                <el-form-item label="用户名" prop="username">
-                  <el-input v-model="formData.username" @blur="checkUsernameExist()" @focus="removeRegisterTips()"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                  <el-input v-model="formData.password"></el-input>
-                </el-form-item>
-                <el-form-item label="确认密码" prop="confirm">
-                  <el-input v-model="formData.confirm"></el-input>
-                </el-form-item>
-                <div class="margin-top20">
-                  <el-form-item>
-                    <el-button  type="primary" style="float:right" @click="submitForm('registerForm')">注册</el-button>
-                    <el-button class="margin-right20" style="float:right" @click="resetForm('registerForm')">清空</el-button>
-                  </el-form-item>
-                </div>
-              </el-form>
-              <div class="go-register">
-                <router-link style="float: right" to="/login">已有账号?去登录</router-link>
-              </div>
+  <div>
+    <div class="flex-col-box center">
+
+      <p id="registerTips" style="color:red;text-align: left">{{registerTips}}</p>
+      <el-form :model="formData" ref="registerForm" :rules="rules" label-position="left" label-width="80px" >
+          <el-form-item label="用户名" prop="username" style="width:380px">
+            <el-input v-model="formData.username" @blur="checkUsernameExist()" @focus="removeRegisterTips()" placeholder="请输入内容"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password" style="width:380px">
+            <el-input v-model="formData.password"></el-input>
+          </el-form-item>
+          <el-form-item label="确认密码" prop="confirm" style="width:380px">
+            <el-input v-model="formData.confirm"></el-input>
+          </el-form-item>
+          <div class="margin-top20">
+            <el-form-item style="width:380px">
+              <el-button  type="primary" style="float:right" @click="submitForm('registerForm')">提交</el-button>
+              <el-button class="margin-right20" style="float:right" @click="resetForm('registerForm')">重置</el-button>
+            </el-form-item>
           </div>
-      </el-tab-pane>
-    </el-tabs>
+        </el-form>
+
+    </div>
   </div>
 </template>
 
@@ -100,6 +92,7 @@
       },
       resetForm(formName){
         this.$refs[formName].resetFields();
+        this.removeRegisterTips();
       },
       handleChange(val) {
         console.log(val);
@@ -142,7 +135,7 @@
                   if(response.data.status=="1"){
                       this.$message({
                         offset:90,
-                        message: '注册成功',
+                        message: '用户添加成功',
                         type: 'success'
                       });
                       this.resetForm('registerForm');
@@ -168,29 +161,5 @@
 </script>
 
 <style  scoped>
-  .login-box{
-    width: 350px;
-    height: 350px;
-    padding-right: 20px;
-    //border: 1px solid #cccccc;
-    background: #ffffff;
-  }
-  .login-background{
-    //background: #324157;
-  }
-  .login-title{
-    width: 100%;
-    height: 40px;
-    line-height: 30px;
-    font-size: 30px;
-    //color: #ffffff;
-    text-align: center;
-  }
-  .go-register{
-    width: 250px;
-  }
-  .dif-margin20{
-    margin-left: -70px;
-  }
 
 </style>

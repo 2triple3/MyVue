@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-layout-south" >
+  <div>
      this is bottom
   </div>
 </template>

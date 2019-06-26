@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import MyMain from '@/views/main/main.vue'
+import MyMain from '@/views/main/Main.vue'
 import Login from '@/views/login/Login.vue'
-import Register from '@/views/register/register.vue'
+import Register from '@/views/register/Register.vue'
 import Charts from '@/views/main/charts/Charts.vue'
 import UpLoad from '@/views/main/upload/UpLoad.vue'
 
@@ -18,24 +18,24 @@ export default new Router({
     path:'/',
     name: 'MyMain',
     component: MyMain,
-    children: [
-	    {
-	      path: '',
-	      component: Charts
-	    },{
-	      path: 'upload',
-	      component: UpLoad
-	    },{
-	      path: 'charts1',
-	      component: Charts
-	    },{
-	      path: 'charts2',
-	      component: Charts
-	    },{
-	      path: 'charts3',
-	      component: Charts
-	    }
-    ]
+    // children: [
+	   //  {
+	   //    path: '',
+	   //    component: Charts
+	   //  },{
+	   //    path: 'upload',
+	   //    component: UpLoad
+	   //  },{
+	   //    path: 'charts1',
+	   //    component: Charts
+	   //  },{
+	   //    path: 'charts2',
+	   //    component: Charts
+	   //  },{
+	   //    path: 'charts3',
+	   //    component: Charts
+	   //  }
+    // ]
   },
   { path: '*', redirect: '/login' }
 
