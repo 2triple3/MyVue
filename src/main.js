@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import i18n from './i18n'
+
 import store from './store'
 
 import ElementUI from 'element-ui';
@@ -14,7 +16,13 @@ import $ from 'jquery';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
-import './styles/common.scss' // global css
+//登录页用到的flex等样式
+import './assets/css/styles/common.scss' // global css
+
+//按钮上的图标等
+import 'font-awesome/css/font-awesome.min.css'
+//import '@/assets/css/iconfont/iconfont.css'
+
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -29,6 +37,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

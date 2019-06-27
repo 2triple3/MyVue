@@ -38,10 +38,10 @@ export default {
 	  return {
         menuList:[          
             {
-             resourceId:"1",resourceName:'用户管理',resourceMethod:'',
+             resourceId:"1",resourceName:'系统管理',resourceMethod:'',
                 children:[
                    {
-                    resourceId:"1-1",resourceName:'用户维护',resourceMethod:'addUser',
+                    resourceId:"1-1",resourceName:'用户管理',resourceMethod:'addUser',
                        children:[
                            {
                             resourceId:"1-1-1",resourceName:'用户列表',resourceMethod:'userList'
@@ -50,6 +50,9 @@ export default {
                             resourceId:"1-1-2",resourceName:'用户新增',resourceMethod:'userAdd'
                            }
                         ]
+                   },
+                   {
+                    resourceId:"1-2",resourceName:'机构管理',resourceMethod:'addUser',
                    },
                 ]
             },
