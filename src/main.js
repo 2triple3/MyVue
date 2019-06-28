@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+//引入自己封装的api
+import api from './http'
+
 import i18n from './i18n'
 
 import store from './store'
@@ -27,6 +30,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+Vue.use(api)
 Vue.use(VueAxios, axios)
 //Vue.use(ElementUI, { size: 'small', zIndex: 3000 })
 Vue.use(ElementUI)

@@ -4,10 +4,10 @@
         <div class="toolbar" style="float:left;padding-top:10px;padding-left:15px;">
           <el-form :inline="true" :model="filters" size="small">
             <el-form-item>
-              <el-input v-model="filters.name" placeholder="用户名"></el-input>
+              <el-input v-model="filters.username" placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item>
-              <my-button icon="fa fa-search" label="搜索"  type="" @click=""/>
+              <my-button icon="fa fa-search" label="搜索"  type="" @click="findUser"/>
             </el-form-item>
             <el-form-item>
               <my-button icon="fa fa-plus" :label="$t('action.add')"  type="primary" @click="addUser()"/>
@@ -29,20 +29,20 @@
         </el-table-column>
         </el-table>
         <!-- 新增/修改弹出界面 -->
-        <el-dialog :title="!formData.id ? '新增' : '修改'" width="40%" :visible.sync="dialogVisible" :close-on-click-modal="false">
-          <el-form :model="formData" :rules="rules" ref="formData" @keyup.enter.native="submitForm()" 
-            label-width="80px" :size="size" style="text-align:left;">
-            <el-form-item label="名称" prop="username">
-              <el-input v-model="formData.username" placeholder="用户名"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password" >
-              <el-input v-model="formData.password" placeholder="密码"> @focus="" id="password"></el-input>
-            </el-form-item>
-          </el-form>
-          <span slot="footer" class="dialog-footer">
-            <el-button :size="size"  @click="dialogVisible = false">{{$t('action.cancel')}}</el-button>
-            <el-button :size="size"  type="primary" @click="submitForm()">{{$t('action.comfirm')}}</el-button>
-          </span>
+        <el-dialog :title="'修改'" width="40%" :visible.sync="dialogVisible" :close-on-click-modal="false">
+              <el-form :model="formData" :rules="rules" ref="formData" @keyup.enter.native="submitForm()" 
+                label-width="80px" :size="size" style="text-align:left;">
+                <el-form-item label="名称" prop="username">
+                  <el-input v-model="formData.username" placeholder="用户名"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password" >
+                  <el-input v-model="formData.password" placeholder="密码"> @focus="" id="password"></el-input>
+                </el-form-item>
+              </el-form>
+              <span slot="footer" class="dialog-footer">
+                <el-button :size="size"  @click="dialogVisible = false">{{$t('action.cancel')}}</el-button>
+                <el-button :size="size"  type="primary" @click="submitForm()">{{$t('action.comfirm')}}</el-button>
+              </span>
         </el-dialog>
         <br/>
         <div class="block">
@@ -133,19 +133,21 @@ export default {
         },
 
         deleteUser(index, tabledata){
-            const username = tabledata[index].username;
-            this.axios.get(
-              'http://127.0.0.1:8081/api/deleteUser/'+username,
-              {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
-            ).then(
-              (response) => {
-                      this.tableData = response.data.userlist;                     
-              }
-            ).catch((response)=>{
-                    this.registerTips="检查用户名是否存在时连接失败!";
-                    //alert("与服务器连接失败!");
-                    console.log(response)
-            });
+            this.$confirm('确认删除吗？', '提示', {}).then(() => {
+                const username = tabledata[index].username;
+                this.axios.get(
+                  'http://127.0.0.1:8081/api/deleteUser/'+username,
+                  {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+                ).then(
+                  (response) => {
+                          this.tableData = response.data.userlist;                     
+                  }
+                ).catch((response)=>{
+                        this.registerTips="检查用户名是否存在时连接失败!";
+                        //alert("与服务器连接失败!");
+                        console.log(response)
+                });
+            }).catch(()=>{});
         },
 
         // 初始页currentPage、初始每页数据数pagesize和数据data
@@ -158,6 +160,24 @@ export default {
                 //console.log(this.currentPage)  //点击第几页
         },
 
+        findUser(){
+
+                let params = JSON.stringify(this.filters)
+                this.axios.post(
+                  'http://127.0.0.1:8081/user/findUser',
+                  params,
+                  {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+                ).then(
+                  (response) => {
+                          this.tableData = response.data.userlist;                     
+                  }
+                ).catch((response)=>{
+                        this.registerTips="检查用户名是否存在时连接失败!";
+                        //alert("与服务器连接失败!");
+                        console.log(response)
+                });
+        },
+
         // 表单提交
         submitForm () {
               this.$refs['formData'].validate((valid) => {
@@ -165,17 +185,36 @@ export default {
                 this.$confirm('确认提交吗？', '提示', {}).then(() => {
                   this.editLoading = true
                   let params = Object.assign({}, this.formData)
-                  this.$api.dept.save(params).then((res) => {
-                    this.editLoading = false
-                    if(res.code == 200) {
-                      this.$message({ message: '操作成功', type: 'success' })
-                      this.dialogVisible = false
-                      this.$refs['formData'].resetFields()
-                    } else {
-                      this.$message({message: '操作失败, ' + res.msg, type: 'error'})
-                    }
-                    this.findTreeData()
-                  })
+
+                  this.axios.post(
+                    'http://127.0.0.1:8081/user/save',
+                    params,
+                    {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
+                  ).then(
+                          (response) => {
+                            this.editLoading = false
+                            if(response.data.code == 200){
+                                this.dialogVisible = false
+                                this.$refs['formData'].resetFields()
+                                this.$message({
+                                  offset:90,
+                                  message: '操作成功',
+                                  type: 'success'
+                                })
+                            }else {
+                                this.$message({
+                                  offset:90,
+                                  message: '操作失败',
+                                })
+                            }
+                            this.findTableData();
+                          }
+                  ).catch((response)=>{
+                          this.registerTips="注册提交时连接失败!";
+                          //alert("与服务器连接失败!");
+                          console.log(response)
+                  });
+
                 })
               }
             })

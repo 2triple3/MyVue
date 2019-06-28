@@ -1,4 +1,4 @@
-import { loginByUsername, logout, getUserInfo } from '@/api/login'
+import { loginByUsername, logout, getUserInfo } from '@/http/moudules/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
