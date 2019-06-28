@@ -187,7 +187,7 @@ export default {
                   let params = Object.assign({}, this.formData)
 
                   this.axios.post(
-                    'http://127.0.0.1:8081/user/save',
+                    'http://127.0.0.1:8081/user/update',
                     params,
                     {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
                   ).then(
