@@ -1,41 +1,22 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import vuex from 'vuex'
+
+Vue.use(vuex);
+
 import app from './modules/app'
-import errorLog from './modules/errorLog'
-//import permission from './modules/permission'
-import tagsView from './modules/tagsView'
+import tab from './modules/tab'
+import iframe from './modules/iframe'
 import user from './modules/user'
-import getters from './getters'
+import menu from './modules/menu'
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  modules: {
-    app,
-    errorLog,
-    //permission,
-    tagsView,
-    user
-  },
-  getters,
-
-  state:{
-    userInfo: {
-      userName: '李武帝',
-      password: 123456
-    },
-    num: 0
-  },
-
-  mutations: {
-    add: function (state) {
-      state.num++
-    },
-    dec: function (state) {
-      state.num--;
+const store = new vuex.Store({
+    modules: {
+        app: app,
+        tab: tab,
+        iframe: iframe,
+        user: user,
+        menu: menu
     }
-  }
-  
 })
 
 export default store

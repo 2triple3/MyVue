@@ -16,7 +16,7 @@ import mainLeft from './Main_left';
 import mainCenter from './Main_center';
 import mainBottom from './Main_bottom';
 export default {
-  name: 'utanmain', 
+  name: 'mymain', 
   components:{
       mainTop,
       mainLeft,
@@ -37,12 +37,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
 
-  }
 
 </style>

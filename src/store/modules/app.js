@@ -1,34 +1,28 @@
-import Cookies from 'js-cookie'
-
-const app = {
-  state: {
-    sidebar: {
-      opened: !+Cookies.get('sidebarStatus')
+export default {
+    state: {
+        appName: "NX Platform",  // 应用名称
+        themeColor: "#545c64",  // 主题颜色
+        oldThemeColor: "#545c64",   // 上一次主题颜色
+        collapse:false,  // 导航栏收缩状态
+        menuRouteLoaded:false    // 菜单和路由是否已经加载
     },
-    language: Cookies.get('language') || 'zh'
-  },
-  mutations: {
-    TOGGLE_SIDEBAR: state => {
-      if (state.sidebar.opened) {
-        Cookies.set('sidebarStatus', 1)
-      } else {
-        Cookies.set('sidebarStatus', 0)
-      }
-      state.sidebar.opened = !state.sidebar.opened
+    getters: {
+        collapse(state){// 对应着上面state
+            return state.collapse
+        }
     },
-    SET_LANGUAGE: (state, language) => {
-      state.language = language
-      Cookies.set('language', language)
+    mutations: {
+        onCollapse(state){  // 改变收缩状态
+            state.collapse = !state.collapse
+        },
+        setThemeColor(state, themeColor){  // 改变主题颜色
+            state.oldThemeColor = state.themeColor
+            state.themeColor = themeColor
+        },
+        menuRouteLoaded(state, menuRouteLoaded){  // 改变菜单和路由的加载状态
+            state.menuRouteLoaded = menuRouteLoaded;
+        }
+    },
+    actions: {
     }
-  },
-  actions: {
-    toggleSideBar({ commit }) {
-      commit('TOGGLE_SIDEBAR')
-    },
-    setLanguage({ commit }, language) {
-      commit('SET_LANGUAGE', language)
-    }
-  }
 }
-
-export default app

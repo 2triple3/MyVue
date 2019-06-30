@@ -19,6 +19,8 @@ export default function $axios(options) {
     instance.interceptors.request.use(
       config => {
         let token = Cookies.get('token')
+        token = true
+        console.log('token:', token)
         // 1. 请求开始的时候可以结合 vuex 开启全屏 loading 动画
         // console.log(store.state.loading)
         // console.log('准备发送请求...')
@@ -41,7 +43,7 @@ export default function $axios(options) {
             // config.data = qs.stringify(config.data)
           // }
         }
-
+        console.log("config:"+config)
         return config
       },
 
@@ -97,6 +99,7 @@ export default function $axios(options) {
         return data
       },
       err => {
+        console.log("err:"+err)
         if (err && err.response) {
           switch (err.response.status) {
             case 400:

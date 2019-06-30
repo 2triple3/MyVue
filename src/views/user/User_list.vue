@@ -16,7 +16,7 @@
         </div>
 
         <!--数据列表-->        
-        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="400" border style="width: 100%">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="300" border style="width: 100%">
         <el-table-column prop="username" label="用户名" width="180"></el-table-column>
         <el-table-column prop="userid" label="用户id" width="180"></el-table-column>
         <el-table-column prop="password" label="密码"></el-table-column>
@@ -72,6 +72,7 @@ export default {
 
   data() {
 	  return {
+
         size: 'small',
         filters: {
           username: ''
@@ -186,7 +187,21 @@ export default {
                   this.editLoading = true
                   let params = Object.assign({}, this.formData)
 
-                  this.axios.post(
+
+                  this.$api.user.update(params).then((res) => {
+                    this.editLoading = false
+                    if(res.code == 200) {
+                      this.$message({ message: '操作成功', type: 'success' })
+                      this.dialogVisible = false
+                      this.$refs['formData'].resetFields()
+                    } else {
+                      this.$message({message: '操作失败, ' + res.msg, type: 'error'})
+                    }
+                   this.findTableData()
+                  })
+
+
+/*                  this.axios.post(
                     'http://127.0.0.1:8081/user/update',
                     params,
                     {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
@@ -210,10 +225,11 @@ export default {
                             this.findTableData();
                           }
                   ).catch((response)=>{
-                          this.registerTips="注册提交时连接失败!";
+                          this.registerTips="提交时连接失败!";
                           //alert("与服务器连接失败!");
                           console.log(response)
                   });
+  */                
 
                 })
               }
