@@ -19,24 +19,32 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import menuTree from './MenuTree.vue';//菜单树不含根节点el-menu因为树内有递归
 import breadcrumbNav from './Breadcrumb.vue';//面包屑
 import userList from '../user/User_list';
 import userAdd from '../user/User_add';
 
 export default {
-    name: 'main-center',
+  name: 'main-center',
 
-    components:{
-      menuTree,
-      breadcrumbNav,
-      userList,
-      userAdd,
-    },
+  components:{
+    menuTree,
+    breadcrumbNav,
+    userList,
+    userAdd,
+  },
+
+  computed: {
+    ...mapState({
+      menuList: state=>state.menu.navTree
+    }),
+
+  },
     
 	data() {
 	  return {
-        menuList:[          
+        menuList666666:[          
             {
              resourceId:"1",resourceName:'系统管理',resourceMethod:'',
                 children:[

@@ -16,7 +16,22 @@ const store = new vuex.Store({
         iframe: iframe,
         user: user,
         menu: menu
-    }
+    },
+    state:{
+	    userInfo: {
+	      userName: '李武帝',
+	      password: 123456
+	    },
+	    num: 0
+    },
+    mutations: {
+	    add: function (state) {
+	      state.num++
+	    },
+	    dec: function (state) {
+	      state.num--;
+	    }
+  }
 })
 
 export default store

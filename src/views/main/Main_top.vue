@@ -117,7 +117,7 @@ export default {
   	},
 
 	mounted(){
-	  const currUsername = JSON.parse(window.localStorage.getItem('userInfo')).username
+	  const currUsername = JSON.parse(window.sessionStorage.getItem('userInfo')).username
   	  this.user.name = currUsername
       this.user.avatar = require("@/assets/images/user.png")
 	},
@@ -158,7 +158,7 @@ export default {
 	    //console.log(key, keyPath);
 	  },
       logOut(){
-        localStorage.clear();
+        sessionStorage.clear();
         this.dialogVisible=false;
       	this.$router.replace('/login');
       }

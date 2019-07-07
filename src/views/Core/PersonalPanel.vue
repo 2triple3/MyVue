@@ -83,12 +83,10 @@ export default {
         type: "warning"
       })
       .then(() => {
-        sessionStorage.removeItem("user")
+        sessionStorage.removeItem("userInfo")
         this.deleteCookie("token")
         this.$router.push("/login")
-        this.$api.login.logout().then((res) => {
-          }).catch(function(res) {
-        })
+        //this.$api.login.logout().then((res) => {}).catch(function(res) {})
       })
       .catch(() => {})
     },
@@ -106,9 +104,7 @@ export default {
         sessionStorage.removeItem("user")
         this.deleteCookie("token")
         this.$router.push("/login")
-        this.$api.login.logout().then((res) => {
-          }).catch(function(res) {
-        })
+        //this.$api.login.logout().then((res) => {}).catch(function(res) {})
     }
   },
   mounted() {

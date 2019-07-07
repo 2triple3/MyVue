@@ -49,7 +49,7 @@
       };
       //password验证函数
       const checkPassword = function (rule, value, callback) {
-        var reg = /^\w{6,10}$/
+        var reg = /^\w{3,10}$/
         if(!value){
           return callback(new Error('密码不为空'));
         }else if(!reg.test(value)) {

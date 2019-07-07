@@ -2,15 +2,15 @@
     <div>
 
       <template v-for="list in menuList" >
-        <el-submenu v-if="list.children && list.children.length>0" :key="list.resourceId" :index="list.resourceName"  >
+        <el-submenu v-if="list.children && list.children.length>0" :key="list.resourceId" :index="list.name"  >
           <template slot="title"  style="padding-left:10px" >
             <i class=""></i>
-            <span slot="title">{{list.resourceName}}</span>
+            <span slot="title">{{list.name}}</span>
           </template>
           <MenuTree :menuList="list.children"></MenuTree>
         </el-submenu>
-        <el-menu-item v-else :index="list.resourceName"  :key="list.resourceId" style="" @click="changeParentComponent(list.resourceMethod)" >
-          <span>{{list.resourceName}}</span>
+        <el-menu-item v-else :index="list.name"  :key="list.resourceId" style="" @click="changeParentComponent()" >
+          <span>{{list.name}}</span>
         </el-menu-item>
       </template>
 

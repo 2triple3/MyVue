@@ -75,11 +75,11 @@
         rules: {
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度是6到10位的字母或数字', trigger: 'blur' }
+            { min: 3, max: 10, message: '长度是3到10位的字母或数字', trigger: 'blur' }
           ],
           password: [
             { required: true, message: '密码不能为空', trigger: 'blur'},
-            { min: 6, max: 10 ,message: '长度是6到10位的字母或数字', trigger: 'blur'}
+            { min: 3, max: 10 ,message: '长度是3到10位的字母或数字', trigger: 'blur'}
           ]
         },
       }
@@ -109,7 +109,7 @@
         console.log(val);
       },
       setUserInfo(obj){
-        window.localStorage.setItem('userInfo',obj);
+        window.sessionStorage.setItem('userInfo',obj);
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
