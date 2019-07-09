@@ -20,10 +20,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import menuTree from './MenuTree.vue';//菜单树不含根节点el-menu因为树内有递归
-import breadcrumbNav from './Breadcrumb.vue';//面包屑
-import userList from '../user/User_list';
-import userAdd from '../user/User_add';
+import menuTree from '../sys/MenuTree.vue';//菜单树不含根节点el-menu因为树内有递归
+import breadcrumbNav from '../sys/Breadcrumb.vue';//面包屑
+import userList from '../sys/User';
+import userAdd from '../sys/User_add';
+import menuList from '../sys/Menu';//菜单维护列表页面
+import roleList from '../sys/Role';
 
 export default {
   name: 'main-center',
@@ -33,6 +35,8 @@ export default {
     breadcrumbNav,
     userList,
     userAdd,
+    menuList,
+    roleList,
   },
 
   computed: {

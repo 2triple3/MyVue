@@ -16,7 +16,7 @@
         </div>
 
         <!--数据列表-->        
-        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="300" border style="width: 100%">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="330" border style="width: 100%">
 
             <el-table-column header-align="center" align="center" 
             v-for="column in columns"
@@ -71,6 +71,7 @@
 
 <script>
 import MyButton from "@/views/utils/MyButton"
+import { format } from "@/utils/datetime"
 //import FaIconTooltip from "@/components/FaIconTooltip"
 
 export default {
@@ -90,8 +91,9 @@ export default {
         filterColumns: [],      
         tableData:[],
         formData: {
-          username: '',
-          password: '',
+          userid:'',
+          username:'',
+          password:'',
         },
         rules: {
           username: [
@@ -123,9 +125,9 @@ export default {
                 {prop:"userid", label:"ID", minWidth:50},
                 {prop:"username", label:"用户名", minWidth:120},
                 {prop:"password", label:"密码", minWidth:120},
-                {prop:"deptName", label:"机构", minWidth:120},
+                {prop:"deptId", label:"机构号", minWidth:120},
                 {prop:"roleNames", label:"角色", minWidth:100},
-                {prop:"create_time", label:"创建时间", minWidth:120, formatter:this.dateFormat}
+                {prop:"createTime", label:"创建时间", minWidth:120, formatter:this.dateFormat}
               ]
               this.filterColumns = JSON.parse(JSON.stringify(this.columns));
           },
@@ -148,6 +150,11 @@ export default {
           });
 
         },
+
+        // 时间格式化
+        dateFormat: function (row, column, cellValue, index){
+            return format(row[column.property])
+        },
 
         addUser(){
             this.$emit("changeComponent",'userAdd');
@@ -188,7 +195,6 @@ export default {
         },
 
         findUser(){
-
                 let params = JSON.stringify(this.filters)
                 this.axios.post(
                   'http://127.0.0.1:8081/user/findUser',
@@ -212,7 +218,6 @@ export default {
                 this.$confirm('确认提交吗？', '提示', {}).then(() => {
                   this.editLoading = true
                   let params = Object.assign({}, this.formData)
-
 
                   this.$api.user.update(params).then((res) => {
                     this.editLoading = false

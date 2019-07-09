@@ -16,11 +16,9 @@ export default {
     color: #333;
     text-align: center;
     line-height: 60px;
-
     position: fixed;
     right: 0;
     left: 0;
-
   }
   
 </style>
