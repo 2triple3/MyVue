@@ -1,16 +1,16 @@
 <template>
-    <div>
+    <div ref="menutree">
 
-      <template v-for="list in menuList" >
-        <el-submenu v-if="list.children && list.children.length>0" :key="list.resourceId" :index="list.name"  >
+      <template v-for="menuItem in menuItemList" >
+        <el-submenu v-if="menuItem.children && menuItem.children.length>0" :key="menuItem.resourceId" :index="menuItem.name"  >
           <template slot="title"  style="padding-left:10px" >
             <i class=""></i>
-            <span slot="title">{{list.name}}</span>
+            <span slot="title">{{menuItem.name}}</span>
           </template>
-          <MenuTree :menuList="list.children"></MenuTree>
+          <MenuTree :menuItemList="menuItem.children" v-on:changeComponent="changeParentComponent"></MenuTree>
         </el-submenu>
-        <el-menu-item v-else :index="list.name"  :key="list.resourceId" style="" @click="changeParentComponent()" >
-          <span>{{list.name}}</span>
+        <el-menu-item v-else :index="menuItem.name"  :key="menuItem.id" style="" @click="changeParentComponent(menuItem.method)" >
+          <span>{{menuItem.name}}</span>
         </el-menu-item>
       </template>
 
@@ -26,19 +26,18 @@ export default {
       return {}
   },
 
-  props:['menuList'],
+  props:['menuItemList'],
 
   methods: {
-    handleRoute (menu) {
-      // 通过菜单URL跳转至指定路由
-      //this.$router.push(menu.url)
+    handleRoute (menuItem) {
+      //通过菜单URL跳转至指定路由
+      this.$router.push(menuItem.url)
     },
-    changeParentComponent(name){
-      //alert(list.resourceMethod);
-      //alert(name);
-      this.$emit("changeComponent",name);
+    changeParentComponent(method){
+      //通过emit调用父组件中的方法控制组件的显示从而响应菜单项点击
+      //console.log("子");
+      this.$emit("changeComponent",method);
     },
-
   }
 
 }

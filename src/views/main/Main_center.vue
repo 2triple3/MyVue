@@ -3,14 +3,14 @@
       <el-container>
         <el-aside width="200px">
             <el-menu :default-openeds="currMenu" @open="openMenu" unique-opened @select="handleMenuSelect">
-                <menuTree :menuList="menuList"></menuTree> 
+                <menuTree :menuItemList="menuItemList" v-on:changeComponent="changeCurrentTabComponent"></menuTree> 
             </el-menu>
         </el-aside>
 
         <el-main>
             <breadcrumbNav :currentPath="breads"></breadcrumbNav>
             <br/>
-            <component v-bind:is="currentTabComponent" v-on:changeComponent="changeComponent"></component>
+            <component v-bind:is="currentTabComponent" v-on:changeComponent="changeCurrentTabComponent"></component>
         </el-main>
 
       </el-container>
@@ -37,35 +37,35 @@ export default {
 
   computed: {
     ...mapState({
-      menuList: state=>state.menu.navTree
+      menuItemList: state=>state.menu.navTree
     }),
 
   },
     
 	data() {
 	  return {
-        menuList666666:[          
+        menuItemList666666:[          
             {
-             resourceId:"1",resourceName:'系统管理',resourceMethod:'',
+             id:"1",name:'系统管理',method:'',
                 children:[
                    {
-                    resourceId:"1-1",resourceName:'用户管理',resourceMethod:'addUser',
+                    id:"1-1",name:'用户管理',method:'addUser',
                        children:[
                            {
-                            resourceId:"1-1-1",resourceName:'用户列表',resourceMethod:'userList'
+                            id:"1-1-1",name:'用户列表',method:'userList'
                            },
                            {
-                            resourceId:"1-1-2",resourceName:'用户新增',resourceMethod:'userAdd'
+                            id:"1-1-2",name:'用户新增',method:'userAdd'
                            }
                         ]
                    },
                    {
-                    resourceId:"1-2",resourceName:'机构管理',resourceMethod:'addUser',
+                    id:"1-2",name:'机构管理',method:'addUser',
                    },
                 ]
             },
-            {resourceId:"2",resourceName:'菜单项2',resourceMethod:''},
-            {resourceId:"3",resourceName:'菜单项3',resourceMethod:''},    
+            {id:"2",name:'菜单项2',method:''},
+            {id:"3",name:'菜单项3',method:''},    
         ],
         currMenu:[],
         currentTabComponent:"",
@@ -86,16 +86,13 @@ export default {
         addUser(){
             this.currentTabComponent= 'userAdd'; 
         },
-        changeComponent(paramsFromSubComponent){
+        changeCurrentTabComponent(paramsFromSubComponent){
+            //console.log("父");
             this.currentTabComponent= paramsFromSubComponent; 
         },
         handleMenuSelect(index,indexPath){
             this.breads=indexPath;
-            const taskName = indexPath[indexPath.length - 1];
-            let componentName = "";
-            if(taskName==="用户列表")componentName="userList";
-            if(taskName==="用户新增")componentName="userAdd";
-            this.currentTabComponent= componentName; 
+
         }
 
 	}

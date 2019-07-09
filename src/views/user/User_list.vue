@@ -17,16 +17,26 @@
 
         <!--数据列表-->        
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="300" border style="width: 100%">
-        <el-table-column prop="username" label="用户名" width="180"></el-table-column>
-        <el-table-column prop="userid" label="用户id" width="180"></el-table-column>
-        <el-table-column prop="password" label="密码"></el-table-column>
-        <el-table-column prop="" label="注册日期"></el-table-column>
-        <el-table-column prop="operation" label="操作">
-         <template slot-scope="scope">
-            <my-button icon="fa fa-edit" :label="$t('action.edit')"  @click="editUser(scope.row)" />
-            <my-button icon="fa fa-trash" type="danger" label="删除"  @click="deleteUser(scope.$index, tableData)" />
-         </template>   
-        </el-table-column>
+
+            <el-table-column header-align="center" align="center" 
+            v-for="column in columns"
+            :prop="column.prop" 
+            :label="column.label" 
+            :width="column.width" 
+            :min-width="column.minWidth" 
+            :fixed="column.fixed" 
+            :key="column.prop" 
+            :type="column.type" 
+            :formatter="column.formatter" :sortable="column.sortable==null?true:column.sortable">
+            </el-table-column>
+
+            <el-table-column prop="operation" label="操作" width="185" fixed="right" header-align="center" align="center">
+               <template slot-scope="scope">
+                  <my-button icon="fa fa-edit" :label="$t('action.edit')"  @click="editUser(scope.row)" />
+                  <my-button icon="fa fa-trash" type="danger" label="删除"  @click="deleteUser(scope.$index, tableData)" />
+               </template>   
+            </el-table-column>
+
         </el-table>
         <!-- 新增/修改弹出界面 -->
         <el-dialog :title="'修改'" width="40%" :visible.sync="dialogVisible" :close-on-click-modal="false">
@@ -72,11 +82,12 @@ export default {
 
   data() {
 	  return {
-
         size: 'small',
         filters: {
           username: ''
-        },        
+        },  
+        columns: [],
+        filterColumns: [],      
         tableData:[],
         formData: {
           username: '',
@@ -100,10 +111,25 @@ export default {
   },
 
   mounted(){
-      this.findTableData();
+      this.findTableData()
+      this.initColumns()
   },
 
   methods:{
+
+        //初始化表格列
+          initColumns: function () {
+              this.columns = [
+                {prop:"userid", label:"ID", minWidth:50},
+                {prop:"username", label:"用户名", minWidth:120},
+                {prop:"password", label:"密码", minWidth:120},
+                {prop:"deptName", label:"机构", minWidth:120},
+                {prop:"roleNames", label:"角色", minWidth:100},
+                {prop:"create_time", label:"创建时间", minWidth:120, formatter:this.dateFormat}
+              ]
+              this.filterColumns = JSON.parse(JSON.stringify(this.columns));
+          },
+
         // 获取列表数据
         findTableData: function () {
           this.loading = true
