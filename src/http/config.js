@@ -7,6 +7,7 @@ export default {
   baseUrl: baseUrl,
   // 请求头信息
   headers: {
+    'Access-Control-Allow-Origin': '*', 
     'Content-Type': 'application/json;charset=UTF-8'
   },
   // 参数

@@ -7,18 +7,18 @@
 				<el-input v-model="filters.name" placeholder="名称"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<kt-button icon="fa fa-search" :label="$t('action.search')" perms="sys:dept:view" type="primary" @click="findTreeData(null)"/>
+				<my-button icon="fa fa-search" :label="$t('action.search')" perms="sys:dept:view" type="primary" @click="findTreeData(null)"/>
 			</el-form-item>
 			<el-form-item>
-				<kt-button icon="fa fa-plus" :label="$t('action.add')" perms="sys:dept:add" type="primary" @click="handleAdd"/>
+				<my-button icon="fa fa-plus" :label="$t('action.add')" perms="sys:dept:add" type="primary" @click="handleAdd"/>
 			</el-form-item>
 		</el-form>
 	</div>
 	<!--表格树内容栏-->
-    <el-table :data="tableTreeDdata" stripe size="mini" style="width: 100%;"
+    <el-table :data="tableTreeDdata" height="220" border stripe size="small" style="width: 100%;"
       rowKey="id" v-loading="loading" element-loading-text="$t('action.loading')">
       <el-table-column
-        prop="id" header-align="center" align="center" width="80" label="ID">
+        prop="id" header-align="center" align="center" width="120" label="ID">
       </el-table-column>
       <table-tree-column 
         prop="name" header-align="center" treeKey="id" width="150" label="名称">
@@ -38,8 +38,8 @@
       <el-table-column
         fixed="right" header-align="center" align="center" width="185" :label="$t('action.operation')">
         <template slot-scope="scope">
-          <kt-button icon="fa fa-edit" :label="$t('action.edit')" perms="sys:dept:edit" @click="handleEdit(scope.row)"/>
-          <kt-button icon="fa fa-trash" :label="$t('action.delete')" perms="sys:dept:delete" type="danger" @click="handleDelete(scope.row)"/>
+          <my-button icon="fa fa-edit" :label="$t('action.edit')" perms="sys:dept:edit" @click="handleEdit(scope.row)"/>
+          <my-button icon="fa fa-trash" :label="$t('action.delete')" perms="sys:dept:delete" type="danger" @click="handleDelete(scope.row)"/>
         </template>
       </el-table-column>
     </el-table>
@@ -69,15 +69,15 @@
 </template>
 
 <script>
-import KtButton from "@/views/Core/KtButton"
-import TableTreeColumn from '@/views/Core/TableTreeColumn'
+import MyButton from "@/views/utils/MyButton"
+import TableTreeColumn from '@/views/utils/TableTreeColumn'
 import PopupTreeInput from "@/components/PopupTreeInput"
 import FaIconTooltip from "@/components/FaIconTooltip"
 import { format } from "@/utils/datetime"
 export default {
 	components:{
     PopupTreeInput,
-    KtButton,
+    MyButton,
     TableTreeColumn,
     FaIconTooltip
 	},

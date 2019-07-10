@@ -26,6 +26,7 @@ import userList from '../sys/User';
 import userAdd from '../sys/User_add';
 import menuList from '../sys/Menu';//菜单维护列表页面
 import roleList from '../sys/Role';
+import deptList from '../sys/Dept';
 
 export default {
   name: 'main-center',
@@ -37,6 +38,7 @@ export default {
     userAdd,
     menuList,
     roleList,
+    deptList,
   },
 
   computed: {
