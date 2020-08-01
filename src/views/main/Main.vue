@@ -12,7 +12,7 @@
 
 <script>
 import mainTop from './Main_top';
-import mainLeft from './Main_left';
+import mainLeft from './Main_left';//没用到，实际左侧的菜单在mianCenter里面
 import mainCenter from './Main_center';
 import mainBottom from './Main_bottom';
 export default {

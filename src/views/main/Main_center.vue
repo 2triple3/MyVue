@@ -98,7 +98,6 @@ export default {
         },
         handleMenuSelect(index,indexPath){
             this.breads=indexPath;
-
         }
 
 	}

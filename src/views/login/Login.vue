@@ -144,9 +144,19 @@
                       }                         
               }
             ).catch((response)=>{
-                    this.loginTips="登录提交时连接失败!";
-                    //alert("与服务器连接失败!");
-                    console.log(response)
+                    //后端不启动时用admin登录
+                    if(this.formData.username=="admin"){
+                          this.setUserInfo(obj);
+                          this.$message({
+                            offset:90,
+                            message: '登录成功',
+                            type: 'success'
+                          });
+                          this.$router.replace('/'); 
+                    }else{
+                          this.loginTips="登录提交时连接失败!";
+                          console.log("========="+response)
+                    }           
             });
 
           } else {
