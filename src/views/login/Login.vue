@@ -63,7 +63,7 @@
       return {
         activeName: 'first',//初始标签页
         loginTips:'',
-        apiUrl: 'http://127.0.0.1:8000/api/login',
+        apiUrl: 'http://127.0.0.1:8081/api/login',
         formData: {
           username: '',
           password: ''
@@ -144,8 +144,8 @@
                       }                         
               }
             ).catch((response)=>{
-                    //后端不启动时用admin登录
-                    if(this.formData.username=="admin"){
+                    //后端不启动时用admin1登录
+                    if(this.formData.username=="admin1"){
                           this.setUserInfo(obj);
                           this.$message({
                             offset:90,
