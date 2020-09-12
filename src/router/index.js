@@ -85,7 +85,7 @@ function addDynamicMenuAndRoutes(userName, to, from) {
     store.commit('menuRouteLoaded', true)
     // 保存菜单树
     store.commit('setNavTree', res.data)
-    console.log("后台获取的菜单树数据==="+JSON.stringify(res.data))
+    console.log("findNavTree后台获取的菜单树数据==="+JSON.stringify(res.data))
   })
   .catch(function(res) {
       //后端不启动时用admin1登录

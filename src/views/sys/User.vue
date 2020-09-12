@@ -140,12 +140,12 @@ export default {
             {headers: {'Content-Type': 'application/json;charset=UTF-8'}}
           ).then(
             (response) => {
+console.log("http://127.0.0.1:8081/api/userlist响应:::"+response.data);
                   this.tableData = response.data.userlist;
                   this.loading = false;                     
             }
           ).catch((response)=>{
-                  this.registerTips="检查用户名是否存在时连接失败!";
-                  //alert("与服务器连接失败!");
+                  this.registerTips="检查用户名是否存在时失败!";
                   console.log(response)
           });
 
@@ -177,8 +177,7 @@ export default {
                           this.tableData = response.data.userlist;                     
                   }
                 ).catch((response)=>{
-                        this.registerTips="检查用户名是否存在时连接失败!";
-                        //alert("与服务器连接失败!");
+                        this.registerTips="检查用户名是否存在时失败!";
                         console.log(response)
                 });
             }).catch(()=>{});
@@ -205,8 +204,7 @@ export default {
                           this.tableData = response.data.userlist;                     
                   }
                 ).catch((response)=>{
-                        this.registerTips="检查用户名是否存在时连接失败!";
-                        //alert("与服务器连接失败!");
+                        this.registerTips="检查用户名是否存在时失败!";
                         console.log(response)
                 });
         },

@@ -63,7 +63,8 @@
       return {
         activeName: 'first',//初始标签页
         loginTips:'',
-        apiUrl: 'http://127.0.0.1:8081/api/login',
+        apiUrl: 'http://127.0.0.1:8081/login',
+        //apiUrl: 'http://127.0.0.1:8081/api/login',
         formData: {
           username: '',
           password: ''
@@ -75,11 +76,11 @@
         rules: {
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度是3到10位的字母或数字', trigger: 'blur' }
+            { min: 1, max: 10, message: '长度是1到10位的字母或数字', trigger: 'blur' }
           ],
           password: [
-            { required: true, message: '密码不能为空', trigger: 'blur'},
-            { min: 3, max: 10 ,message: '长度是3到10位的字母或数字', trigger: 'blur'}
+            { required: false, message: '密码不能为空', trigger: 'blur'},
+            { min: 0, max: 10 ,message: '长度是0到10位的字母或数字', trigger: 'blur'}
           ]
         },
       }
@@ -116,7 +117,7 @@
           if (valid) {
             var obj = JSON.stringify(this.formData);
             this.axios.get(
-              'http://127.0.0.1:8081/api/login',
+              'http://127.0.0.1:8081/login',
               {
                 params: {
                             username: this.formData.username,
@@ -139,7 +140,9 @@
                           });
                           this.$router.replace('/');   
                       }else{
-                          this.loginTips="用户名或密码错误!";
+console.log("http://127.0.0.1:8081/login响应:::"+JSON.stringify(response));
+
+                          this.loginTips="登录失败!";
                           $("#password").val("");
                       }                         
               }
@@ -154,7 +157,7 @@
                           });
                           this.$router.replace('/'); 
                     }else{
-                          this.loginTips="登录提交时连接失败!";
+                          this.loginTips="登录提交时失败!";
                           console.log("========="+response)
                     }           
             });

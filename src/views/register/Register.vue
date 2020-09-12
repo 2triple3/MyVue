@@ -121,7 +121,7 @@
                       }                       
               }
             ).catch((response)=>{
-                    this.registerTips="检查用户名是否存在时连接失败!";
+                    this.registerTips="检查用户名是否存在时失败!";
                     //alert("与服务器连接失败!");
                     console.log(response)
             });
@@ -151,7 +151,7 @@
                   }
               }
             ).catch((response)=>{
-                    this.registerTips="注册提交时连接失败!";
+                    this.registerTips="注册提交时失败!";
                     //alert("与服务器连接失败!");
                     console.log(response)
             });
